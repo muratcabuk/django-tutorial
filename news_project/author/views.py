@@ -11,7 +11,7 @@ def login(request):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
 
-        user = authenticate(username=username, password=password) # kullanıcının veritabanında olup olmadığını
+        user = authenticate(username=username, password=password) # kullanıcının veri tabanında olup olmadığını
                                                                   # kendimiz kontrol ediyoruz
         if user is None:
             messages.error(request=request, message = "Kullanıcıadı veya şifre bulunamadı!")

@@ -20,7 +20,7 @@ Peki neler öğrenceğiz?
 - Statik dosyaların yönetimi
 - Sunucuya dosya yükleme ve silme
 - Yüklenen resimlerin farklı boyutlarda oluşturulması
-- ORM ve veritabanı migration
+- ORM ve veri tabanı migration
 - Boostrap 5'in Django template'lerinde kullanımı
 - Django uygulamının yaynlanması (deployment)
 
@@ -36,6 +36,8 @@ Uygulamanın bitmiş kodlarını github sayfamda bulabilirsiniz. Admin paneli i�
 
 Umarım faydalı olur. İyi okumalar.
 ### 2. Kurulum
+
+Python 3.9 versiyonunu kurduktan sonra virtual environment kuruluma başlayabiliriz.
 
 virtualenv kullanılarak virtual environment oluşturuldu.
 
@@ -55,7 +57,7 @@ python3 -m django --version
 
 ```
 
-Yada alttaki gibi django module olarka kullaılarak da verdion konrol yapılabilir. 
+Yada alttaki gibi Django module olarak kullanılarak da version konrol yapılabilir. 
 
 ```python
 
@@ -66,7 +68,7 @@ print(django.get_version())
 
 ```
 
-Alltakki grafiği makaleler boyunda arada sırada gelip kontrol ediniz. Django'nun çalışma mantığını, hangi dosyanın ne için kullanıldığını çok badit bir şekilde ifade etmiş.
+Allttaki grafiği makaleler boyunca arada sırada gelip kontrol ediniz. Django'nun çalışma mantığını, hangi dosyanın ne için kullanıldığını çok badit bir şekilde ifade etmiş.
 
 
 ![basic-django.png](files/basic-django.png)
@@ -86,7 +88,7 @@ python3 manage.py startapp news
 
 ```
 
-bu uyuglamayı daha sonra ayağa kaldırıp kullanacağız.
+bu uygulamayı daha sonra ayağa kaldırıp kullanacağız.
 
 
 news_project klasörü altındaki settings.py dosyasına bakacak olursak 'INSTALLED_APPS' adında bir değişken görünecek. Bu değişkende Django tarafınfdan yüklenen app lerin listesi görülmektdir.
@@ -115,7 +117,7 @@ MIDDLEWARE = [
 ]
 ```
 
-aynı dosyada veritabanı bilgilerine de ulaşılabilir
+aynı dosyada veri tabanı bilgilerine de ulaşılabilir
 
 ```python
 DATABASES = {
@@ -206,7 +208,7 @@ news_project klasörüne bakacak olursak db.sqlite3 diye bir dosyasının olduğ
 
 Settings.py dosyası içinde geçen *django.contrib.admin* satırı bize django içinde default (varsayılan) uygulamalardan birinin de admin uygulması olduğu göstermektedir. İleride kendi uygulamarımızı da buraya ekleyeceğiz.
 
-Şimdi bu admin uygulamasının verilerini ve tablolarını migration yaparak sqlite3 veritabanımızda oluşturalım.
+Şimdi bu admin uygulamasının verilerini ve tablolarını migration yaparak sqlite3 veri tabanımızda oluşturalım.
 
 Bu arada uygulamamızı ilk çalıştırdığımız 8000 portundan yayınlandığı esnada terminalimizde gelen mesajlardan biri de aşadaki gibiydi. Bu mesaj bize admin uygulamasının çalışmayacağını göstermektedir. Hatta bu sonu gidermek için de hangi komutu çalıştırmamız gerektiğini de söylüyor.
 
@@ -266,7 +268,7 @@ python3 manage.py startapp news
 ```
 Proje klasörümüz içinde news adında bir klasör oluştuğunu göreceğiz.
 
-News App'imiz altında veritabanı ve sayfa modellerimizi models.py dosyasına oluşturduktan sonra admin.py dosyasına register etmemiz gerekiyor.
+News App'imiz altında veri tabanı ve sayfa modellerimizi models.py dosyasına oluşturduktan sonra admin.py dosyasına register etmemiz gerekiyor.
 
 Haberlerimizi kategorize edeceğimiz için iki adet modele ihtiyacımız olacak. Bunlardan biri  NewsCategory diğeri ise News olacak.
 
@@ -362,7 +364,7 @@ Admin sayfamızda görünen model ve sayfalarlar alakalaı özelleştirme yampma
 
 verbose_name parametersini doldurmuş olduk. Ayrıca \__str\__ fonksiyonunu yazarak listelem sayfalarında news object diye yazan kelimeyi başlıkla değiştirmiş olduk.
 
-"class Meta" ile yonetim panelindeki menülerde de Türkçe görünmesini sağlamış olduk.
+"class Meta" ile yönetim panelindeki menülerde de Türkçe görünmesini sağlamış olduk.
 
 
 ```python
@@ -404,7 +406,7 @@ Bu işlemden sonra admin sayfamızı yenileyebiliriz. Ancak burada şuna dikkat 
 
 News uygulaması altındaki admin.py dosyası altında yapmış olduğumuz registration işlemlerini decorator versiyonu değiştirerek admin modellerimizi ekliyoruz.
 
-list_display ile admin sayfasındaki listelerde hangi alanların (prooerty) gösterileceğini de belirtmiş oluyoruz.
+list_display ile admin sayfasındaki listelerde hangi alanların (property) gösterileceğini de belirtmiş oluyoruz.
 
 Alttaki düzenlemeyi yaptıktan sonra sayfalarımız refresh yapabiliriz.
 
@@ -434,7 +436,7 @@ class NewsCategoryAdmin(admin.ModelAdmin):
 
 ```
 
-Son olarak uygulamamızın (news) menülerde görünen adını da Türkçleştiriyoruz. Bunu için news uygulama latındaki apps.py dosyasını editliyoruz.
+Son olarak uygulamamızın (news) menülerde görünen adını da Türkçleştiriyoruz. Bunu için news uygulama altındaki apps.py dosyasını editliyoruz.
 
 ```python
 
@@ -454,7 +456,7 @@ Yeni bir terminalde alttaki komutu kullanarak Django shell'e geçiş yapıyoruz.
 python3 manage.py shell
 
 ```
-Bu komutla birlikte shell'e geçiş yapıyoruz. Shell üzerinde prpjemizle alakalı bütün modüllere erişmek mümkün. **ORM** aracını kullanarak veritabanı sorguları yapmak, yeni kayıtlar oluşturmak veya değiştirmek mümkün. Biraz örnek yapalım
+Bu komutla birlikte shell'e geçiş yapıyoruz. Shell üzerinde projemizle alakalı bütün modüllere erişmek mümkün. **ORM** aracını kullanarak veri tabanı sorguları yapmak, yeni kayıtlar oluşturmak veya değiştirmek mümkün. Biraz örnek yapalım
 
 ```python
 from django.contrib.auth.models import User
@@ -470,7 +472,7 @@ print(News)
 newUser = User(username="muratcabuk")
 newUser.set_password("Abc-123!")
 newUser.save() # kullanıyı check edecek olursak verştabanında görebiliriz.
-# ayrıca kullanıcıyı yonetim paneli üzerinde görebiliriz ve editleyebiliriz.
+# ayrıca kullanıcıyı yönetim paneli üzerinde görebiliriz ve editleyebiliriz.
 
 newNewsCat = NewsCategory(title="test kategori", desc = "test kategori", author = newUser)
 newNewsCat.save() # daha sonra gidip yönetim panelinden kntrol edecek olursak kategorini oluşturulduğunu görebiliriz
@@ -526,7 +528,7 @@ TEMPLATES = [
     },
 ]
 ```
-Daha sonra bu klasöre anasayfa için bir index.html ekliyoruz.
+Daha sonra bu klasöre ana sayfa için bir index.html ekliyoruz.
 
 Sıra geldi url ve routing'lerimi düzenlemeye. Bunun için news_project klasörümüz altındaki  urls.py dosyamızı açıyoruz ve alttaki düzenlemeyi yapıyoruz.
 
@@ -545,7 +547,7 @@ urlpatterns = [
 ```
 Daha sonra bu routing'e cevap vermesi için news klasörü altındaki views.py dosyasına aşağıdaki fonksiyonu ekliyoruz.Ayrıca en üste HttpResponse modülünü de import ediyoruz. Şuan templates klasörü altındaki index.html'yi çağırmadan ekrana basit bir mesaj yazmak i.in "merhaba dünya" diyoruz.
 
-Aşağıda default olarak gelen function based views kullanılıyor. birde class based view kullanımı var detaylar için alttaki linki kullanabilirsiniz.
+Aşağıda default olarak gelen function based views kullanılıyor. bir de class based view kullanımı var detaylar için alttaki linki kullanabilirsiniz.
 
 - https://docs.djangoproject.com/en/4.0/topics/class-based-views/intro/
 
@@ -558,7 +560,7 @@ def index(request):
     return HttpResponse("<h3>Merhaba Dünya</h3>")
 ```
 
-Uygulamamız çalışmıyorsa alttaki komutla çalıştırabiliriz. Anasayfaya gittiğimizde merhaba dünya yazdığını görebiliriz.
+Uygulamamız çalışmıyorsa alttaki komutla çalıştırabiliriz. Ana sayfaya gittiğimizde merhaba dünya yazdığını görebiliriz.
 
 ```bash
 python3 manage.py runserver
@@ -574,7 +576,7 @@ def index(request):
 ```
 Daha sonra sayfamızı refresh ettiğimizde index.html dosyamızın içeriğinin geldiğini görebiliriz.
 
-Ancak burada şöyle bir gariplik var. Anasayfayı istemiş olduk URL'den ancak News uygulamamızın anasayfasına yönlendirmiş olduk.
+Ancak burada şöyle bir gariplik var. Ana sayfayı istemiş olduk URL'den ancak News uygulamamızın ana sayfasına yönlendirmiş olduk.
 
 Bu durumu düzeltmek için templates klasörüne news diye bir klasör açıyoruz ve bir index.html doyası da onun içine ekliyoruz. İçine news uygulamasının çağrıldığını göstermek için "merhaba news uygulmasına hoşgeldiniz." yazıyoruz.
 
@@ -597,7 +599,7 @@ Yapmaya çalıştığımız news_project projemizin ana/root/açılış uygulama
 
 settings.py dosyamızda zaen static folder diznimiz belirtilmiş. Bu dizini bütün uygulamalarımıza özel olarak oluşturmamız gerekiyor.
 
-Yani news uygulamamızın statik dosyaları için news uygulamasına static adında bir klasör açıyoruz. settings.py dosyamızda INSTALLED_APPS desğişkeninde birde django.contrib.staticfiles uygulaması var bu uygulama static dosyları yönetiyor. Bu uygulmada [STATICFILES_FINDERS](https://docs.djangoproject.com/en/4.0/ref/settings/#std:setting-STATICFILES_FINDERS) sisteminden faydalanır.
+Yani news uygulamamızın statik dosyaları için news uygulamasına static adında bir klasör açıyoruz. settings.py dosyamızda INSTALLED_APPS değişkeninde bir de django.contrib.staticfiles uygulaması var bu uygulama static dosyları yönetiyor. Bu uygulmada [STATICFILES_FINDERS](https://docs.djangoproject.com/en/4.0/ref/settings/#std:setting-STATICFILES_FINDERS) sisteminden faydalanır.
 
 ```python
 STATIC_URL = 'static/'
@@ -630,12 +632,12 @@ Sorun yaşayacak olursanız settings.py dosyasındaki Debug modu False yapıp AL
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Project | News Anasayfa</title>
+    <title>New Project | News Ana sayfa</title>
     <link rel="stylesheet" href="{% static 'style.css' %}"></link> <!--Burayı ekledik-->
 </head>
 <body>
 
-    <h3>News Anasayfaya Hoşgeldiniz</h3>
+    <h3>News Ana sayfaya Hoşgeldiniz</h3>
     <p>Merhaba</p> <!--Burayı ekledik-->
 
 </body>
@@ -645,11 +647,11 @@ Sorun yaşayacak olursanız settings.py dosyasındaki Debug modu False yapıp AL
 
 Ancak bu şekilde template dosyalarımız ana dizinde iken static dosyalarımız uygulamaların altında kalmış olacak. Bu nedenle static klasörümüzü ana dizine taşıyıp settings.py dosyamızda alttaki değişikliği yapıyoruz.
 
-### 10. Template Mirasalma (Template Inheritance)
+### 10. Template Miras Alma (Template Inheritance)
 
-Daha önce oluşturmuş olduğumuz style.css ve template klasötünde oluşturduğumuz bütün html dosylaını temizliyoruz. Template klasötüne layout.html  ve index.html adında  2 adet dosya oluşturuyoruz.
+Daha önce oluşturmuş olduğumuz style.css ve template klasötünde oluşturduğumuz bütün html dosyalarını temizliyoruz. Template klasötüne layout.html  ve index.html adında  2 adet dosya oluşturuyoruz.
 
-Daha sonra tasarımda kullanacağımız bootstrap 5 i CDN üzerinden projemize dahil ediyoruz. Bunun için https://getbootstrap.com/ adresine gidiyoruz ve anasayfadaki jsDelivr cdn seçeneğinden css ve adreslerini alıyoruz ve layout.html sayfamıza ekliyoruz.
+Daha sonra tasarımda kullanacağımız bootstrap 5 i CDN üzerinden projemize dahil ediyoruz. Bunun için https://getbootstrap.com/ adresine gidiyoruz ve ana sayfadaki jsDelivr cdn seçeneğinden css ve adreslerini alıyoruz ve layout.html sayfamıza ekliyoruz.
 
 - https://getbootstrap.com/docs/5.1/examples/
 - https://getbootstrap.com/docs/5.0/getting-started/introduction/
@@ -791,7 +793,7 @@ son olarak navbar.html dosyamızı aşağıdaki gibi yapıyoruz.
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Anasayfa</a>
+            <a class="nav-link active" aria-current="page" href="/">Ana sayfa</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/about-us">Biz Kimiz?</a>
@@ -893,14 +895,14 @@ Bu işlemlerde sonra artık html üzerinde kullandığımız URL'ler için dinam
 Html dosyamızda menüde kullandığımız likleri urls.py dosyasında oluşturğumuz URLlere verdiğimiz isimlerle de çağırabililiriz.
 - Biz Kimiz? : {% url "aboutus" %}
 - İletişim : {% url "contactus" %}
-- Anasayfa : {% url "index" %}
+- Ana sayfa : {% url "index" %}
 
 Örnek olarak navbar.html dosyamızdaki bir bölümü aşağıda görebilirsiniz
 
 ```html
 
 <li class="nav-item">
-  <a class="nav-link active" aria-current="page" href="{% url "index" %}">Anasayfa</a>
+  <a class="nav-link active" aria-current="page" href="{% url "index" %}">Ana sayfa</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="{% url "aboutus" %}">Biz Kimiz?</a>
@@ -915,7 +917,7 @@ Konu ile ilgili olarak alttaki linki ziyaret edebilirsiniz.
 
 Bunun için templates klasörümüze context-test.html adında bir dosya oluşturuyoruz ve içeriğini about-us.html den kopyalarak H3 tagı içine içerik test yazıyoruz.
 
-Sayfamızın rouing işlemleri için news_project klasörü latındaki urls.py dosyasını alttaki gibi değiştiriyoruz.
+Sayfamızın rouing işlemleri için news_project klasörü altındaki urls.py dosyasını alttaki gibi değiştiriyoruz.
 
 ```python
 
@@ -1017,7 +1019,7 @@ urlpatterns = [
 ]
 ```
 
-Daha sonra news_project klasorumuzdeki urls.py dosyasını da aşağıdaki gibi değiştiriyoruz. include module'ünü de eklediğimize dikkat edin.
+Daha sonra news_project klasörümüzdeki urls.py dosyasını da aşağıdaki gibi değiştiriyoruz. include module'ünü de eklediğimize dikkat edin.
 
 ```python
 
@@ -1036,7 +1038,7 @@ urlpatterns = [
 ]
 ```
 
-Artık news uygulamamızı anasayfasına alttaki linkerden ulaşabiliriz.
+Artık news uygulamamızı ana sayfasına alttaki linkerden ulaşabiliriz.
 - http://127.0.0.1:8000/news/index
 - http://127.0.0.1:8000/news
 - http://127.0.0.1:8000
@@ -1107,7 +1109,7 @@ python manage.py startapp author
 ```
 Uygulamamızda Django'nun sunmuş olduğu kullanıcı (user) modellerini kullanacağız. Bu durumda herhangi bir model register da etmiyor olacağız.
 
-Öncelikle urls.py dosyamızı oluşturyoruz ve içeriğini alttaki gibi dolduruyoruz.
+Öncelikle urls.py dosyamızı oluşturuyoruz ve içeriğini alttaki gibi dolduruyoruz.
 
 ```python
 
@@ -1191,7 +1193,7 @@ Bütün hepsini alttaki örnekteki gibi değiştiriyoruz.
 {% endblock body %}
 ```
 
-Artık aşağıdaki adresleri çağırarak sayfalrı göreiliriz. Ayrıca üst menüden yazarlara tıklayarak da profile sayfasına ulaşabiliriz.
+Artık aşağıdaki adresleri çağırarak sayfaları görebiliriz. Ayrıca üst menüden yazarlara tıklayarak da profile sayfasına ulaşabiliriz.
 
 - http://127.0.0.1:8000/author/
 - http://127.0.0.1:8000/author/profile
@@ -1201,7 +1203,7 @@ Artık aşağıdaki adresleri çağırarak sayfalrı göreiliriz. Ayrıca üst m
 
 ileride bu sayfaların hepsini dolduracağız.
 
-Dikkat ettiyseniz buraya kadar uygulamamsızı INSTALLED_APPS değişkenine eklememize rağmen hata almadık. Bunun sebebi yeni bir model oluşrmamış olmamız.
+Dikkat ettiyseniz buraya kadar uygulamamızı INSTALLED_APPS değişkenine eklememize rağmen hata almadık. Bunun sebebi yeni bir model oluşrmamış olmamız.
 
 Ancak yinede bu author uygulamamızı da settings.py dosyasındaki INSTALLED_APPS değişkenine ekliyoruz.
 
@@ -1233,7 +1235,7 @@ Floppyform'a geçip geçmemeniz çok önemli olmayabilir ancak crispy forma bakm
 - Çok kullanışlı filter'lar
 - Form Helper'lar sayesinde detaylı form oluşturma
 - View üzerinden formları düzenleyebilme
-- Birden fazla form oluşturma
+- bir den fazla form oluşturma
 - Ajax üzerinden form validate edebilme 
 
 Detaylar için bakınız : https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html#fundamentals
@@ -1334,7 +1336,7 @@ Login ekranında daha custom form lar yapacağız.
 ```
 
 
-Şu haliyle formumuz sadece get ile çağrıldığında gösterilecek şekilde çalışıyor. Ancak birde post durumu var yani register fonksiyonu post işleminde de çalıştırılacak. Bunun için views.py doyasındaki register fonksiyonunu post işlemlerine cevap verecek şekilde değiştiriyoruz. Bunu yapmanın bir kaç yolu var altta kod bloğunda görülebilir.
+Şu haliyle formumuz sadece get ile çağrıldığında gösterilecek şekilde çalışıyor. Ancak bir de post durumu var yani register fonksiyonu post işleminde de çalıştırılacak. Bunun için views.py doyasındaki register fonksiyonunu post işlemlerine cevap verecek şekilde değiştiriyoruz. Bunu yapmanın birkaç yolu var altta kod bloğunda görülebilir.
 
 
 ```python
@@ -1397,7 +1399,7 @@ def register(request):
 
 - https://docs.djangoproject.com/en/4.0/ref/contrib/messages/#using-messages-in-views-and-templates
 
-Örneğin yazar register olduktan sonra login yapıyoruz. Login olma işleminin başarılı olduğuna dair mesaj vermek istediğmizi varsayalım.
+Örneğin yazar register olduktan sonra login yapıyoruz. Login olma işleminin başarılı olduğuna dair mesaj vermek istediğimizi varsayalım.
 
 Bunun için öncelikle views.py dosyasına messages modulünü import etmeliyiz.
 
@@ -1472,7 +1474,7 @@ class LoginForm(forms.Form):
     # Bu durumda Inherit aldığımız form class'ında default olarak ne varsa o çalışacak.
 ```
 
-views.py içindeki login fonksiyonu aşağıdaki gibi olacak. Burada dikkat ettiyseniz yazarı önce authenticate ediyoruz daha sonra login yapıyoruz. Authenticate fonksiyonu bir credential oluşturuyor, kullanıcı veritabanında var mı yok mu buna bakıyor. Login ise django üzerinde session oluşturuyor. Yani her defasında veritabanına gidilmemesi için sunucu tarafında session (oturum) yazar logout oluncaya kadar cache'lenmiş oluyor.
+views.py içindeki login fonksiyonu aşağıdaki gibi olacak. Burada dikkat ettiyseniz yazarı önce authenticate ediyoruz daha sonra login yapıyoruz. Authenticate fonksiyonu bir credential oluşturuyor, kullanıcı veri tabanında var mı yok mu buna bakıyor. Login ise django üzerinde session oluşturuyor. Yani her defasında veri tabanına gidilmemesi için sunucu tarafında session (oturum) yazar logout oluncaya kadar cache'lenmiş oluyor.
 
 Bu arada views.py dosyamızda zaten bir login fonksiyonu yazacağımız için django.contrib.auth modulundan import ettiğimiz login ile karışmaması için import ettiğimiz login fonksyionunu log_in olarak değiştirdik.
 
@@ -1487,7 +1489,7 @@ def login(request):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
 
-        user = authenticate(username=username, password=password) # kullanıcının veritabanında olup olmadığını
+        user = authenticate(username=username, password=password) # kullanıcının veri tabanında olup olmadığını
                                                                   # kendimiz kontrol ediyoruz
         if user is None:
             messages.error(request=request, message = "Kullanıcıadı veya şifre bulunamadı!")
@@ -1502,7 +1504,7 @@ def login(request):
     return render(request, "author/login.html", context=context)
 ```
 
-Bu sefer formu manuel olarak ekledik. Ancak eklediğimiz input'lar için custom filter'a ihtiyacımız oldu. Yukarıda konu ile bazı kantnaklar paylarşık. Basitçe author app'imize  templatetags diye bir klasör ekledik ve içine boş bir \__init\__.py dosyası ile birde custom_filters.py adında bir python dosyası oluşturup içine alttaki kodları yazdık.
+Bu sefer formu manuel olarak ekledik. Ancak eklediğimiz input'lar için custom filter'a ihtiyacımız oldu. Yukarıda konu ile bazı kantnaklar paylarşık. Basitçe author app'imize  templatetags diye bir klasör ekledik ve içine boş bir \__init\__.py dosyası ile bir de custom_filters.py adında bir python dosyası oluşturup içine alttaki kodları yazdık.
 
 ```python
 from django import template
@@ -1551,7 +1553,7 @@ Aşağıdaki linke login işlemimizi kontrol edebiliriz.
 
 view.py dosyamızdaki logout fonksiyonumu aşağıdaki gibi değiştirdik.
 
-Burada da logut çakışmasın diye import ettiğimiz logout fonksiyonunu log_out olarka değiştirdik.
+Burada da logut çakışmasın diye import ettiğimiz logout fonksiyonunu log_out olarak değiştirdik.
 
 ```python
 
@@ -1606,7 +1608,7 @@ Aynı zamanda login olan yazarı selamlamış olduk.
 - https://stackoverflow.com/questions/33763452/applying-css-styles-to-form-items-in-django
 
 
-Haber Kategorilerinin girişi admin panelinden yapılıyo olacak. Bunu yapabilek için ilgili yazarın admin paneline giriş yapma ve haber kategorilerini güncelleme izinlerinin olması gerkiyor bunu ileride göreğiz şimdilik admin yetkimizle admin paneli giriş yapıp bir kaçtane haber kategoris ekleyebiliriz.
+Haber Kategorilerinin girişi admin panelinden yapılıyor olacak. Bunu yapabilek için ilgili yazarın admin paneline giriş yapma ve haber kategorilerini güncelleme izinlerinin olması gerekiyor bunu ileride göreceğiz şimdilik admin yetkimizle admin paneli giriş yapıp birkaçtane haber kategoris ekleyebiliriz.
 
 
 **Profile sayfasına ilgili linkerlin eklenmesi**
@@ -1870,7 +1872,7 @@ Daha sonra News uygulamamız altındaki urls.py dosyasına alttaki satırı ekli
 ```
 Haber güncelleyebilmek için forms.py dosyasına bir şey eklememize gerek yok. İlgili dosyada yeralan NewsForm formu işimizi görecektir.
 
-Son olarak views.py dosyasına alttaki satırları ekliyoruz. Burada dikkat edecek olursak get_object_or_404 adında bir fonksiyonun import edildiğini görebiliriz. Bu fonksiyon sayesinde tek bir kaydı veritabanında getirebiliriz. Eğer ilgili kayıt yoksa da sistem 404 sayfasına yönlencektir. Konu ilgili olarak alttaki linke bakabilirsiniz.
+Son olarak views.py dosyasına alttaki satırları ekliyoruz. Burada dikkat edecek olursak get_object_or_404 adında bir fonksiyonun import edildiğini görebiliriz. Bu fonksiyon sayesinde tek bir kaydı veri tabanında getirebiliriz. Eğer ilgili kayıt yoksa da sistem 404 sayfasına yönlencektir. Konu ilgili olarak alttaki linke bakabilirsiniz.
 
 - https://docs.djangoproject.com/en/4.0/topics/http/shortcuts/#get-object-or-404
 
@@ -1960,7 +1962,7 @@ class News(models.Model):
         verbose_name_plural = "Haberler"
 
 ```
-Modelimiz değiştiği için bunu Django'ya ve veritabanımıza söylememiz gerekiyor. Bunu için alttaki komutlatı sırasıyla çalıştırıyoruz.
+Modelimiz değiştiği için bunu Django'ya ve veri tabanımıza söylememiz gerekiyor. Bunu için alttaki komutlatı sırasıyla çalıştırıyoruz.
 
 ```bash
 python3 manage.py makemigrations
@@ -2233,7 +2235,7 @@ STATICFILES_DIRS = [
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 
-Daha sonra news uygulamamız latındaki model.py doyamıza ckeditor'ü import ediyoruz.
+Daha sonra news uygulamamız altındaki model.py doyamıza ckeditor'ü import ediyoruz.
 
 ```python
 from ckeditor.fields import RichTextField
@@ -2284,12 +2286,12 @@ Artık haber ekleme ve düzenlme sayfalarımızda daha zengin metinler kullanabi
 
 Öncelikle haberler sayfımızı kategori seçimine göre haberleri listeleyen bir yapıya getirelim. daha sonrada kayıtları her bir sayfada 2 kayıt getirecek şekilde güncelleyelim. Amacımız çğrenmek olduğu için test kaydı girmye vakit harcamayalım.
 
-Bunun için navbar.html içindeki Haberler linkimizi /news/search olarka değiştirdikten sonra urls.py dosyamıza alttaki satırı ekliyoruz
+Bunun için navbar.html içindeki Haberler linkimizi /news/search olarak değiştirdikten sonra urls.py dosyamıza alttaki satırı ekliyoruz
 
 ```python
     path('search', views.search, name="news.search"),
 ```
-Ardından view'ımıza search fonksiyonumuzu aşağıdaki gibi ekliyoruz. QuerySet'ler kullanıldığı ana kadar veritabanında işlem yapmazlar. Bu durumda biz veriyi kullanmaya başlayana kadar Django verileri database'den çekmeyecektir. 
+Ardından view'ımıza search fonksiyonumuzu aşağıdaki gibi ekliyoruz. QuerySet'ler kullanıldığı ana kadar veri tabanında işlem yapmazlar. Bu durumda biz veriyi kullanmaya başlayana kadar Django verileri database'den çekmeyecektir. 
 
 https://docs.djangoproject.com/en/4.0/ref/models/querysets/#when-querysets-are-evaluated
 
@@ -2567,7 +2569,7 @@ ALLOWED_HOSTS = ['*']
 ### 27. Bundan Sonra Ne Öğrenmeliyim?
 - Transaction : https://docs.djangoproject.com/en/4.0/topics/db/transactions/
 - Async/Await: https://docs.djangoproject.com/en/4.0/topics/async/
-- Birden fazla tablo ile ilişki içeren kayılarla ilgili sayfalar: https://docs.djangoproject.com/en/4.0/topics/db/queries/
+- bir den fazla tablo ile ilişki içeren kayılarla ilgili sayfalar: https://docs.djangoproject.com/en/4.0/topics/db/queries/
 - Django ile API tabanlı uygulama geliştirme: https://github.com/encode/django-rest-framework
 - Token tabanlı güvenlik: https://www.django-rest-framework.org/api-guide/authentication/
 - Admin panelinin tasarımsal olarak özelleştirilmesi: 
