@@ -2,32 +2,35 @@
 
 Merhabalar,
 
-Bu makale dizisinde amacımız daha önce python, sql, html ve css öğrenmiş ve sunucu taraflı web uygulaması geliştirmeyi öğrenmek isteyen yazılımcı arkadaşlara hızlı bir başlangıç sunabilmek.
+Bu makale serimizde amacımız Python Django Framework'ünü öğrenemeye çalışacağız. Django bir backend we uygulama geliştirme framework'üdür. Backend framework'lerinin tamamını temel amacı sunucu tarafında dinamik html kodları oluşturmatır diyebiliriz. 
 
-Yani amacımız bu işin bütün detayların öğretmek değil. Ancak kendi blog sitenizi, bir şirket sitesini, bir haber sitesini veya ürün tanıtım, portfolio sitesini yapabilcek seviyede Django öğrenmek/öğretmek.  
-
-Neler bilmek gerekyor bu makale dizisini tam olarak anlayabilek ve uygulamyabilmek için?
+Django öğrenemeye başlamak ve bu makalede yazanları da anlayabilmek için
 
 - orta seviye python,
 - orta seviye html ve css,
 - orta seviye sql,
-- vehttp'nin nasıl çalıştığına dair biraz araştırma
+- ve http'nin nasıl çalıştığına dair biraz araştırma
 
-yeterli olacaktır. Eğer bu başlıklar hakkında bir fikriniz yoksa makaleyi anlama konusun da problem yaşayabilirsiniz.
+yeterli olacaktır. Eğer bu başlıklar hakkında bir fikriniz yoksa makale serisini anlama konusun da problem yaşayabilirsiniz.
 
-Peki bu makale dizi ile neler öğreneceğiz?
+Peki neler öğrenceğiz?
 
 - Proje ve uygulama oluşturma
 - Admin sayfalarının özelleştrilmesi
 - Statik dosyaların yönetimi
-- Sunucuya dosya yüklme ve silme
+- Sunucuya dosya yükleme ve silme
 - Yüklenen resimlerin farklı boyutlarda oluşturulması
-- ORM ve migration
-- Bottstrap 5'in tasarımda kullanımı
+- ORM ve veritabanı migration
+- Boostrap 5'in Django template'lerinde kullanımı
+- Django uygulamının yaynlanması (deployment)
 
 Makalenin sonunda daha fazlası için neler öğrenmeniz gerektiği ve bakmanız gereken kaynakları da içeren bir başlık var. Bu bölüm bir anlamda bu makale dizisinde eksik bırakılan yerleri de göstermekdir. Daha kaliteli yazılım geliştirmek için bu bölümdeki konu başlıklarını da hedeflerinize mutlaka ekleyiniz.
 
+Bütün bölüm başlarında kullanılan kaynakların linkleri bulunmaktadır. İlgili başlıkla alakalı daha fazla bilgi almak için faydalanabilirsiniz. Ayrıca karşılaşağınız hatalarala alakalı da bu kaynakları kullnabilirsiniz.
+
 Her türlü sorunuzu makale altına yazabilirsiniz. Kendim cevaplayamasam bile bir başka arkadaşımız destek olabilir. Özellikler hata ve eksikleri yazarsanız kodları ve makaleyi düzeltebiliriz böylece yeni başlayan herkese yardımcı olmuş olursunuz.
+
+Eğer ilk kez Django öğreniyorsanız sabırlı olun, çok fazla hata yapacasınız muhtemelen bu sizi yıldırmasın. Kodu tekar ilk halien alıp tekrar deneyin. Hatayı hemen birine sormak yerine kendiniz çözmeye çalışın. Kendi kendinize öğreneme yeteneklerinizi gelitirmenin en iyi yollarından biri doğrudan sormak yerine araitırmaktır. Büyük ihtimalle aynı hatayı ilk yaşayan siz değilsiniz. Forumlarda probleminizle alakalı cevap bulabilirsiniz. Tüm yolları tükettikten sonra doğrudan bir bilene sormak sizin için faydalı olacaktır.
 
 Umarım faydalı olur. İyi okumalar.
 ### 2. Kurulum
@@ -81,10 +84,10 @@ python3 manage.py startapp news
 
 ```
 
-bu uyuglamay ıdaha sonra ayağa kaldırığ kullanacağız.
+bu uyuglamayı daha sonra ayağa kaldırıp kullanacağız.
 
 
-news_project klasörü altındaki settings.py dosyasına bakacak olursak 'INSTALLED_APPS' adında bir değişken görünecek. Bu değişkende django tarafınfdan yüklenen app lerin listesi görülmektdir.
+news_project klasörü altındaki settings.py dosyasına bakacak olursak 'INSTALLED_APPS' adında bir değişken görünecek. Bu değişkende Django tarafınfdan yüklenen app lerin listesi görülmektdir.
 
 ```python
 INSTALLED_APPS = [
@@ -110,7 +113,7 @@ MIDDLEWARE = [
 ]
 ```
 
-aynı dosyada vertabanı bilgilerine de ulaşılabilir
+aynı dosyada veritabanı bilgilerine de ulaşılabilir
 
 ```python
 DATABASES = {
@@ -239,7 +242,7 @@ python3 manage.py migrate # windows için sadece python yazmamız yeterli 3 yazm
 #   Applying sessions.0001_initial... OK
 ```
 
-db.sqlite3 dosyasınıtekrar açıp bakarsak içinin tablolarla dolduğunu görebiliriz.
+db.sqlite3 dosyasını tekrar açıp bakarsak içinin tablolarla dolduğunu görebiliriz.
 
 Artık admin sayfasını tekrar çalıştırabiliriz. Giriş yapmak için yine rastgele username ve password yazıp sayfayı gönderdğimizde artık daha farklı bir hata alacağız. 
 
@@ -538,9 +541,9 @@ urlpatterns = [
     path('', index),
 ]
 ```
-Daha sonra bu routing'e cevap vermesi için news klasörü altındaki views.py dosyasına aşağıdaki fonksiyonu ekiyoruz.Ayrıca en üste HttpResponse modülünü de import ediyoruz. Şuan templates klasörü altındaki index.html'yi değil de test amaçlı merhaba dünya diyoruz.
+Daha sonra bu routing'e cevap vermesi için news klasörü altındaki views.py dosyasına aşağıdaki fonksiyonu ekliyoruz.Ayrıca en üste HttpResponse modülünü de import ediyoruz. Şuan templates klasörü altındaki index.html'yi çağırmadan ekrana basit bir mesaj yazmak i.in "merhaba dünya" diyoruz.
 
-Aşağıda default olarak gelen function based views kullanılıyor. birde class based view kullanımı var detaylar için alttaki linki kullanbilirsiniz.
+Aşağıda default olarak gelen function based views kullanılıyor. birde class based view kullanımı var detaylar için alttaki linki kullanabilirsiniz.
 
 - https://docs.djangoproject.com/en/4.0/topics/class-based-views/intro/
 
@@ -553,7 +556,7 @@ def index(request):
     return HttpResponse("<h3>Merhaba Dünya</h3>")
 ```
 
-Uygulamamız çalışmıyorsa altttaki komutla çalıştırabiliriz. Anasayfaya gittiğimizde merhaba dünya yazdığını görebiliriz.
+Uygulamamız çalışmıyorsa alttaki komutla çalıştırabiliriz. Anasayfaya gittiğimizde merhaba dünya yazdığını görebiliriz.
 
 ```bash
 python3 manage.py runserver
@@ -569,7 +572,7 @@ def index(request):
 ```
 Daha sonra sayfamızı refresh ettiğimizde index.html dosyamızın içeriğinin geldiğini görebiliriz.
 
-Ancak burada şöyle bir gariplik var. Anasayfayı istemiş olduk url'den ancak News uygulamamızın anasayfasına yönlendirmiş olduk.
+Ancak burada şöyle bir gariplik var. Anasayfayı istemiş olduk URL'den ancak News uygulamamızın anasayfasına yönlendirmiş olduk.
 
 Bu durumu düzeltmek için templates klasörüne news diye bir klasör açıyoruz ve bir index.html doyası da onun içine ekliyoruz. İçine news uygulamasının çağrıldığını göstermek için "merhaba news uygulmasına hoşgeldiniz." yazıyoruz.
 
@@ -885,7 +888,7 @@ urlpatterns = [
 
 Bu işlemlerde sonra artık html üzerinde kullandığımız URL'ler için dinamik url kullanabiliriz.
 
-Html dosyamızda menüde kullandığımız likleri urls.py dosyasında oluşturğumuz url'lere verdiğimiz isimlerle de çağırabililiriz.
+Html dosyamızda menüde kullandığımız likleri urls.py dosyasında oluşturğumuz URLlere verdiğimiz isimlerle de çağırabililiriz.
 - Biz Kimiz? : {% url "aboutus" %}
 - İletişim : {% url "contactus" %}
 - Anasayfa : {% url "index" %}
@@ -994,7 +997,7 @@ Daha sonra şu adrese (http://localhost:8000/context-test/) gittiğimizde aşağ
 
 ### 14. News Uygulamamızın URL'lerini Düzenlemek
 
-Sayfamızda news ugulamıza özel linklerin browser'da adres kısmında ayrıştırlabilmesi gerekiyor. Ayrıca her uygulamanın kendine ait URL'leri kendi içinde durması ana url.py dosyasını da sade tutacaktır.
+Sayfamızda news ugulamamıza özel linklerin browser'da adres kısmında ayrıştırlabilmesi gerekiyor. Ayrıca her uygulamanın kendine ait URL'leri kendi içinde durması ana url.py dosyasını da sade tutacaktır.
 
 Bunun için öncelikle news uygulamamız içine urls.py dosyası oluşturuyoruz.
 
@@ -1100,7 +1103,7 @@ Bunun için projemize author adında bir uygulama oluşturacağız.
 ```bash
 python manage.py startapp author
 ```
-Uygulamamızda django'nu sunmuş olduğu kullanıcı (user) modellerini kullanacağız. Bu durumda herhangi bir model register da etmiyor olacağız.
+Uygulamamızda Django'nun sunmuş olduğu kullanıcı (user) modellerini kullanacağız. Bu durumda herhangi bir model register da etmiyor olacağız.
 
 Öncelikle urls.py dosyamızı oluşturyoruz ve içeriğini alttaki gibi dolduruyoruz.
 
@@ -1392,7 +1395,7 @@ def register(request):
 
 - https://docs.djangoproject.com/en/4.0/ref/contrib/messages/#using-messages-in-views-and-templates
 
-Örneğin yazar register olduktan sonra login yapıyoruz. Login olma işleminin başarılı olduğuna dait mesaj vermek istediğmizi varsayalım.
+Örneğin yazar register olduktan sonra login yapıyoruz. Login olma işleminin başarılı olduğuna dair mesaj vermek istediğmizi varsayalım.
 
 Bunun için öncelikle views.py dosyasına messages modulünü import etmeliyiz.
 
@@ -1544,7 +1547,7 @@ Aşağıdaki linke login işlemimizi kontrol edebiliriz.
 
 **Logout İşlemi**
 
-view.py dosyamıdaki logout fonksiyonumu aşağıdaki gibi değiştirdik.
+view.py dosyamızdaki logout fonksiyonumu aşağıdaki gibi değiştirdik.
 
 Burada da logut çakışmasın diye import ettiğimiz logout fonksiyonunu log_out olarka değiştirdik.
 
@@ -1557,7 +1560,7 @@ def logout(request):
     return render(request, "author/logout.html")
 ```
 
-Geriye son olarak Login, Logot, Profile, Register gibi lnklerimizi navbar'ımıza eklemek kaldı. Bu noktada şunu belirtmek gerekiyor. Eğer ilgili yazar sitemizde oturum açtıysa ona register ve login linkleri görünmemeli, eğer login olmamış bir kullanıcı sayfamızı ziyaret ediyorsa ona da logout linki görünmemeli.
+Geriye son olarak Login, Logot, Profile, Register gibi linklerimizi navbar'ımıza eklemek kaldı. Bu noktada şunu belirtmek gerekiyor. Eğer ilgili yazar sitemizde oturum açtıysa ona register ve login linkleri görünmemeli, eğer login olmamış bir kullanıcı sayfamızı ziyaret ediyorsa ona da logout linki görünmemeli.
 
 Bunun için navbar sayfamıza arama bloğu ile menu arasında alttaki bölümü ekliyoruz.
 
@@ -1643,7 +1646,7 @@ Bunun için templates klasörüne news adında bir klasör açarak içine add.ht
 </main>
 {% endblock body %}
 ```
-News uygulaması urls.py dosyasına alattaki url'leri ekliyoruz.
+News uygulaması urls.py dosyasına alattaki URLleri ekliyoruz.
 
 ```python
     path('add', views.add, name="news.add"),
@@ -1702,7 +1705,7 @@ def add(request):
 
 Haberleri listelemek için öncelikle templates klasörü altındaki news klasörüne list.html adında bir html dosyası ekliyoruz.
 
-Listeme sayfasında haber başlıklarına detay sayfası için link verildiğine dikaket ediniz. Ayrıca silme ve düzenleme sayfaları için de satır sonlarına linkler eklendi. İleri de bunlarında sayflarını hazırlayacağız.
+Listeme sayfasında haber başlıklarına detay sayfası için link verildiğine dikkat ediniz. Ayrıca silme ve düzenleme sayfaları için de satır sonlarına linkler eklendi. İleri de bunların da sayfalarını hazırlayacağız.
 
 ```html
 {% extends "../layout.html" %}
