@@ -1,0 +1,42 @@
+{% extends "../layout.html" %}
+{% block body %}
+<main class="container-lg mt-3">
+    <h3> Haber Listeleme Sayfası </h3>
+ {% if request.user.is_authenticated %}
+      <div class="text-secondary">
+              Merhaba {{ request.user.username }}
+      </div>
+ {% endif %}
+    <hr class="featurette-divider">
+
+<a class="btn btn-secondary" href="/news/add">Haber Ekle</a>
+<a class="btn btn-secondary" href="/news/list">Haber Listele</a>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Haber Kategori</th>
+
+          <th scope="col">Başlık</th>
+          <th scope="col">Tarih</th>
+          <th scope="col">Güncelle</th>
+          <th scope="col">Sil</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for news in news %}
+        <tr>
+            <th scope="row">{{ news.id }}</th>
+            <td>{{ news.news_category_id }}</td>
+            <td><a href="/news/detail/{{ news.id }}"  class="link-primary"> {{ news.title }}</a></td>
+            <td>{{ news.created_date }}</td>
+            <td> <a href="/news/edit/{{ news.id }}" class="btn btn-light">Güncelle</a></td>
+            <td><a href="/news/delete/{{ news.id }}" class="btn btn-light">Sil</a></td>
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</main>
+{% endblock body %}
