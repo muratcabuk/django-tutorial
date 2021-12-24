@@ -2017,7 +2017,9 @@ urlpatterns = [
     path('edit/<int:id>', views.edit, name="news.edit"),
     path('delete/<int:id>', views.delete, name="news.delete"),
     path('detail/<int:id>', views.detail, name="news.detail"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+
+urlpatterns += static(settings.MEDIA_URL,   document_root=settings.MEDIA_ROOT)
 
 ```
 
@@ -2040,10 +2042,13 @@ pip3 install pillow
 
 Öncelikle modelimizde aşağıdaki gibi bir değişiklik yapıyoruz.
 
-- pillow modülünün import edildi
-- pillow modülü sayesinde News class'ı içine save fonksiyonu override edilerek alınan resim jpeg formatında ve boyutu küçültülerek kaydedildi
-- validation maodülünün import edilerek yeni eklenen image_address alanına belirli dosya uzantılarının kabül edilmesi sağlandı. Validation'ların  kullanımı hakkında şu adresten bilgi alabilirsiniz: https://docs.djangoproject.com/en/4.0/ref/validators
--  Delete fonksiyonu override edilerek news silinirken model üzerinden daha önce oluşturulan resimlerin silinmesi sağlandı
+
+- pillow modülünü import ediyoruz
+- pillow modülü sayesinde News class'ı içine save fonksiyonunu override ediyoruz ve alınan resmi  jpeg formatında ve boyutunu küçültülerek kaydediyoruz
+- validation modülünü import ederek yeni eklenen image_address alanına belirli dosya uzantılarının kabul edilmesi sağlıyoruz. 
+
+Validation'lar hakkında daha fazla bilgi almak için şu adresten bilgi alabilirsiniz: https://docs.djangoproject.com/en/4.0/ref/validators
+- Delete fonksiyonunu override ederek news entity silinirken model üzerinden daha önce oluşturulan resimlerin silinmesini sağlıyoruz.
 
 ```python
 
