@@ -1,0 +1,21 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+<main class="container-lg mt-3">
+    <h3> Register </h3>
+ <hr class="featurette-divider">
+<div class="">
+
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </form>
+</div>
+
+
+</main>
+
+{% endblock body %}

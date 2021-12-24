@@ -1,0 +1,32 @@
+{% extends "../layout.html" %}
+{% load custom_filters %}
+{% block body %}
+<main class="container-lg">
+<div class="container form-signin" style="width:500px">
+
+  <form method="post">
+      {% csrf_token %}
+      <h1 class="h3 mb-3 fw-normal">Giriş Yapınız</h1>
+    <div class="form-floating">
+        {{ form.username | addclass:'form-control' }}
+        <label for="username">Kullanıcıadı</label>
+    </div>
+    <div class="form-floating">
+                {{ form.password | addclass:'form-control' }}
+        <label for="password">Şifre</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
+
+  </form>
+
+</div>
+
+</main>
+
+
+
+
+
+
+{% endblock body %}
